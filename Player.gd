@@ -1,47 +1,66 @@
-class_name Player
 extends CharacterBody3D
 
-const SPEED = 10.0
-const JUMP_SPEED = 5.0
-const MOUSE_SENSITIVITY = 0.005
+var speed
+const WALK_SPEED = 5.0
+const SPRINT_SPEED = 8.0
+const JUMP_VELOCITY = 4.8
+const SENSITIVITY = 0.004
 
-var motion = Vector3()
+#fov variables
+const BASE_FOV = 75.0
+const FOV_CHANGE = 1.5
 var camera_rotation = Vector2()
 
-@onready var main_camera = $Camera3D
+var gravity = 9.8
+
+@onready var camera = $Camera3D
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _input(event):
+
+func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		camera_look(event.relative)
+		camera_rotation.x += event.relative.x * SENSITIVITY
+		camera_rotation.y += event.relative.y * SENSITIVITY
+		camera_rotation.y = clamp(camera_rotation.y, -PI/2, PI/2)
+		camera.transform.basis = Basis()
+		camera.rotate_object_local(Vector3.UP, -camera_rotation.x)
+		camera.rotate_object_local(Vector3.RIGHT, -camera_rotation.y)
 
-func _process(delta):
-	var input_motion = Vector2()
-	if Input.is_action_pressed("move_forward"):
-		input_motion.y -= 1
-	if Input.is_action_pressed("move_backward"):
-		input_motion.y += 1
-	if Input.is_action_pressed("move_left"):
-		input_motion.x -= 1
-	if Input.is_action_pressed("move_right"):
-		input_motion.x += 1
 
-	input_motion = input_motion.normalized()
-	motion.x = input_motion.x * SPEED
-	motion.z = input_motion.y * SPEED
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 
+	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		motion.y = JUMP_SPEED
+		velocity.y = JUMP_VELOCITY
+	
+	# Handle Sprint.
+	if Input.is_action_pressed("sprint"):
+		speed = SPRINT_SPEED
 	else:
-		motion.y += ProjectSettings.get_setting("physics/3d/default_gravity") * delta * 0.5 
+		speed = WALK_SPEED
 
-func _physics_process(_delta):
+	# Get the input direction and handle the movement/deceleration.
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var direction = (camera.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if is_on_floor():
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
+			velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
+	else:
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
+		velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
+	
+	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
+	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
+	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
 	move_and_slide()
-
-func camera_look(mouse_movement):
-	camera_rotation += mouse_movement * MOUSE_SENSITIVITY
-	camera_rotation.y = clamp(camera_rotation.y, deg_to_rad(-90), deg_to_rad(90))
-	rotation_degrees.y = -rad_to_deg(camera_rotation.x)
-	main_camera.rotation_degrees.x = -rad_to_deg(camera_rotation.y)
