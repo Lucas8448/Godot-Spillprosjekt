@@ -14,9 +14,6 @@
 [node name="zombie" instance=ExtResource("1_x1pfc")]
 script = ExtResource("2_76blo")
 
-[node name="Armature" parent="." index="0"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
 [node name="GeneralSkeleton" parent="Armature" index="0"]
 bones/0/position = Vector3(0.00257653, 0.829831, -0.00103729)
 bones/0/rotation = Quaternion(-0.0240483, -0.0173556, 0.0142817, 0.999458)
