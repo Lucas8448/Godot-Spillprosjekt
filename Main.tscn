@@ -6,7 +6,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcdu5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_gguw2"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwal8"]
+size = Vector3(14.5122, 0.548547, 9.92066)
 
 [node name="Main" type="Node3D"]
 
@@ -31,9 +32,8 @@ shape = SubResource("CapsuleShape3D_mcdu5")
 [node name="Static" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39961, 1.72057)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Static"]
-transform = Transform3D(2199.89, 0, 0, 0, 1, 0, 0, 0, 3261.28, 0, -1.5, 0)
+[node name="Ground" type="StaticBody3D" parent="Static"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Static/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1, 0, 0, 0)
-shape = SubResource("BoxShape3D_gguw2")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static/Ground"]
+transform = Transform3D(0.896284, 0, 0, 0, 0.896284, 0, 0, 0, 0.896284, 0, -1.77215, -0.337775)
+shape = SubResource("BoxShape3D_bwal8")
