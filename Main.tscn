@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct2xqm68fhgy1"]
+[gd_scene load_steps=5 format=3 uid="uid://ct2xqm68fhgy1"]
 
 [ext_resource type="PackedScene" uid="uid://bq1fn3l4md3m1" path="res://Zombie/Zombie.tscn" id="1_y7pvr"]
-[ext_resource type="Script" path="res://Zombie/Zombie.gd" id="2_pg6se"]
 [ext_resource type="Script" path="res://Player.gd" id="3_aj783"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcdu5"]
@@ -12,20 +11,19 @@ size = Vector3(14.5122, 0.548547, 9.92066)
 [node name="Main" type="Node3D"]
 
 [node name="zombie" parent="." instance=ExtResource("1_y7pvr")]
-script = ExtResource("2_pg6se")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.505492, 0.862831, 0, -0.862831, 0.505492, 0, 3.2405, 0.886283)
 light_energy = 4.589
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16685, 2.72728)
 script = ExtResource("3_aj783")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89961, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_mcdu5")
 
