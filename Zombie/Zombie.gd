@@ -1,19 +1,31 @@
-extends Node3D
+extends CharacterBody3D
 
 var attack_counter = 1
-var move_speed = 1
+var move_speed = 2
+var gravity = 9.81
 var player_node = null
 
 func _ready():
 	$AnimationPlayer.play("Zombie-library/run")
 	player_node = get_tree().get_root().get_node("Main/Player")
 
-func _process(delta):
+func _physics_process(delta):
 	if player_node:
 		look_at(player_node.global_transform.origin, Vector3.UP)
 
-		var direction = global_transform.basis.z.normalized()
-		global_transform.origin -= direction * move_speed * delta
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+
+		var direction = -(global_transform.basis.z.normalized())
+		if is_on_floor():
+			if direction:
+				velocity.x = direction.x * move_speed
+				velocity.z = direction.z * move_speed
+			else:
+				velocity.x = lerp(velocity.x, direction.x * move_speed, delta * 7.0)
+				velocity.z = lerp(velocity.z, direction.z * move_speed, delta * 7.0)
+
+		move_and_slide()
 		
 		if !$AnimationPlayer.is_playing():
 			$AnimationPlayer.play("Zombie-library/attack" + str(attack_counter))
