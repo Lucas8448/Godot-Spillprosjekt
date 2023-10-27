@@ -1,20 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct2xqm68fhgy1"]
+[gd_scene load_steps=8 format=3 uid="uid://ct2xqm68fhgy1"]
 
-[ext_resource type="PackedScene" uid="uid://bq1fn3l4md3m1" path="res://Zombie/Zombie.tscn" id="1_y7pvr"]
+[ext_resource type="Script" path="res://Zombie-spawner.gd" id="1_otxim"]
 [ext_resource type="Script" path="res://Player.gd" id="3_aj783"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcdu5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bwal8"]
-size = Vector3(14.5122, 0.548547, 9.92066)
+size = Vector3(138.562, 0.548547, 199.752)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_suvta"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_energy_multiplier = 2.0
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_nqmgy"]
+sky_material = SubResource("ProceduralSkyMaterial_suvta")
+
+[sub_resource type="Environment" id="Environment_l7ucy"]
+background_mode = 2
+sky = SubResource("Sky_nqmgy")
+tonemap_mode = 2
 
 [node name="Main" type="Node3D"]
 
-[node name="zombie" parent="." instance=ExtResource("1_y7pvr")]
-
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.505492, 0.862831, 0, -0.862831, 0.505492, 0, 3.2405, 0.886283)
-light_energy = 4.589
+[node name="Zombie-spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40199, 0)
+script = ExtResource("1_otxim")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16685, 2.72728)
@@ -35,3 +46,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.39961, 1.72057)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Static/Ground"]
 transform = Transform3D(0.896284, 0, 0, 0, 0.896284, 0, 0, 0, 0.896284, 0, -1.77215, -0.337775)
 shape = SubResource("BoxShape3D_bwal8")
+
+[node name="Sky" type="WorldEnvironment" parent="Static"]
+environment = SubResource("Environment_l7ucy")
+
+[node name="Sun" type="DirectionalLight3D" parent="Static"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, -1.39961, -1.72057)
+shadow_enabled = true
+directional_shadow_mode = 0
