@@ -25,13 +25,23 @@ func _physics_process(delta):
 				velocity.x = lerp(velocity.x, direction.x * move_speed, delta * 7.0)
 				velocity.z = lerp(velocity.z, direction.z * move_speed, delta * 7.0)
 
-		move_and_slide()
+		var collision = move_and_collide(velocity)
+		if collision:
+			handle_collision(collision)
 		
-		if !$AnimationPlayer.is_playing():
-			$AnimationPlayer.play("Zombie-library/attack" + str(attack_counter))
-			attack_counter += 1
-			if attack_counter > 3:
-				attack_counter = 1
+		handle_animations()
+
+func handle_collision(collision):
+	# Here you would handle the collision based on the collision object
+	# For example, you could bounce back, stop movement, etc.
+	pass
+
+func handle_animations():
+	if !$AnimationPlayer.is_playing():
+		$AnimationPlayer.play("Zombie-library/attack" + str(attack_counter))
+		attack_counter += 1
+		if attack_counter > 3:
+			attack_counter = 1
 
 func _on_area_3d_body_entered(body):
 	print(body.name)
