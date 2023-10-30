@@ -11,7 +11,10 @@ func _ready():
 
 func _physics_process(delta):
 	if player_node:
-		look_at(player_node.global_transform.origin, Vector3.UP)
+		var direction_to_player = player_node.global_transform.origin - global_transform.origin
+		direction_to_player.y = 0  # Zero out the vertical component to stay horizontal
+		var target_rotation = atan2(direction_to_player.x, direction_to_player.z)
+		global_transform.basis = Basis(Vector3.UP, target_rotation)  # Set the new rotation
 
 		if not is_on_floor():
 			velocity.y -= gravity * delta
@@ -19,8 +22,8 @@ func _physics_process(delta):
 		var direction = -(global_transform.basis.z.normalized())
 		if is_on_floor():
 			if direction:
-				velocity.x = direction.x * move_speed
-				velocity.z = direction.z * move_speed
+				velocity.x = direction.x * -move_speed
+				velocity.z = direction.z * -move_speed
 			else:
 				velocity.x = lerp(velocity.x, direction.x * move_speed, delta * 7.0)
 				velocity.z = lerp(velocity.z, direction.z * move_speed, delta * 7.0)

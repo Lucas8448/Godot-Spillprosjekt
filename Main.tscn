@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct2xqm68fhgy1"]
+[gd_scene load_steps=9 format=3 uid="uid://ct2xqm68fhgy1"]
 
 [ext_resource type="Script" path="res://Zombie-spawner.gd" id="1_otxim"]
 [ext_resource type="Script" path="res://Player.gd" id="3_aj783"]
+[ext_resource type="PackedScene" uid="uid://4o56rpuvd2xa" path="res://Gun/gun.gltf" id="3_vb1b7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mcdu5"]
 
@@ -33,6 +34,9 @@ script = ExtResource("3_aj783")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89961, 0)
+
+[node name="gun" parent="Player/Camera3D" instance=ExtResource("3_vb1b7")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.15, 0, -0.1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.5, 0)
