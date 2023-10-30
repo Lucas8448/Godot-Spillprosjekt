@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct2xqm68fhgy1"]
+[gd_scene load_steps=10 format=3 uid="uid://ct2xqm68fhgy1"]
 
-[ext_resource type="Script" path="res://Zombie/Zombie-spawner.gd" id="1_otxim"]
+[ext_resource type="Script" path="res://Zombie/Zombie-spawner.gd" id="1_oah22"]
 [ext_resource type="Script" path="res://Player.gd" id="3_aj783"]
 [ext_resource type="PackedScene" uid="uid://4o56rpuvd2xa" path="res://Gun/gun.gltf" id="3_vb1b7"]
+[ext_resource type="PackedScene" uid="uid://cwba4n408yg1a" path="res://Map/Ground.glb" id="4_nidjn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jdncb"]
 
@@ -26,7 +27,7 @@ tonemap_mode = 2
 
 [node name="Zombie-spawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.40199, 0)
-script = ExtResource("1_otxim")
+script = ExtResource("1_oah22")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16685, 2.72728)
@@ -57,3 +58,6 @@ environment = SubResource("Environment_l7ucy")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, -1.39961, -1.72057)
 shadow_enabled = true
 directional_shadow_mode = 0
+
+[node name="Ground" parent="." instance=ExtResource("4_nidjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
