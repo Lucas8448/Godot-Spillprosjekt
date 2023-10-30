@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://don40i72r3wll"]
 
 [ext_resource type="PackedScene" uid="uid://4o56rpuvd2xa" path="res://Gun/gun.gltf" id="1_1bmap"]
-[ext_resource type="Script" path="res://gun.gd" id="2_d2joc"]
+[ext_resource type="Script" path="res://Gun/gun.gd" id="2_d2joc"]
 
 [node name="gun" instance=ExtResource("1_1bmap")]
 script = ExtResource("2_d2joc")

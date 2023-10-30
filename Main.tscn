@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ct2xqm68fhgy1"]
 
-[ext_resource type="Script" path="res://Zombie-spawner.gd" id="1_otxim"]
+[ext_resource type="Script" path="res://Zombie/Zombie-spawner.gd" id="1_otxim"]
 [ext_resource type="Script" path="res://Player.gd" id="3_aj783"]
 [ext_resource type="PackedScene" uid="uid://4o56rpuvd2xa" path="res://Gun/gun.gltf" id="3_vb1b7"]
 

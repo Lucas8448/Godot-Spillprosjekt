@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dpob06i01uh6l"]
 
 [ext_resource type="Texture2D" uid="uid://cdr8jl23iloi8" path="res://Menu/Zombie.jpg" id="1_7ki4k"]
-[ext_resource type="Script" path="res://main_menu.gd" id="1_qg7ng"]
+[ext_resource type="Script" path="res://Menu/main_menu.gd" id="1_qg7ng"]
 [ext_resource type="FontFile" uid="uid://ci2xmejnts6ue" path="res://Menu/Storm Gust.ttf" id="1_wrf36"]
 [ext_resource type="FontFile" uid="uid://cd1vgqtadfwpa" path="res://Menu/who asks satan.ttf" id="2_cu4c8"]
 [ext_resource type="Texture2D" uid="uid://cb5csrik1psad" path="res://Menu/audio.png" id="5_y3mnx"]
