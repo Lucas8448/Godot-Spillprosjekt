@@ -1,0 +1,144 @@
+[gd_scene load_steps=13 format=3 uid="uid://dpob06i01uh6l"]
+
+[ext_resource type="Texture2D" uid="uid://cdr8jl23iloi8" path="res://Menu/Zombie.jpg" id="1_7ki4k"]
+[ext_resource type="Script" path="res://Menu/main_menu.gd" id="1_qg7ng"]
+[ext_resource type="FontFile" uid="uid://ci2xmejnts6ue" path="res://Menu/Storm Gust.ttf" id="1_wrf36"]
+[ext_resource type="FontFile" uid="uid://cd1vgqtadfwpa" path="res://Menu/who asks satan.ttf" id="2_cu4c8"]
+[ext_resource type="Texture2D" uid="uid://cb5csrik1psad" path="res://Menu/audio.png" id="5_y3mnx"]
+[ext_resource type="Script" path="res://TextureButton.gd" id="6_26i4r"]
+[ext_resource type="Texture2D" uid="uid://l7e7svi4l4si" path="res://Menu/Mute.png" id="6_hx3j2"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_cxik4"]
+
+[sub_resource type="FontVariation" id="FontVariation_dtqbd"]
+base_font = ExtResource("2_cu4c8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ohnv"]
+bg_color = Color(0, 0, 0, 0.666667)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02vlx"]
+bg_color = Color(0, 0, 0, 0.784314)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ikfn"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_qg7ng")
+
+[node name="Zombie" type="Sprite2D" parent="."]
+position = Vector2(576, 236)
+scale = Vector2(1.125, 1)
+texture = ExtResource("1_7ki4k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 642.0
+texture = SubResource("ImageTexture_cxik4")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 642.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer"]
+show_behind_parent = true
+custom_minimum_size = Vector2(2.08165e-12, 250)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_dtqbd")
+theme_override_font_sizes/font_size = 120
+text = "Undead Uprising:
+The Fall of Humanity
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 75)
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 0
+
+[node name="Play Now" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 90)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_wrf36")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ohnv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_02vlx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5ikfn")
+text = "Play now"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 75)
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 20
+
+[node name="Controls" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(2.08165e-12, 90)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_wrf36")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ohnv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_02vlx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5ikfn")
+text = "Contols"
+
+[node name="MarginContainer3" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 75)
+layout_mode = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 0
+
+[node name="Exit Game" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(2.08165e-12, 90)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_wrf36")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ohnv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_02vlx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5ikfn")
+text = "Exit game"
+
+[node name="Sound Mute" type="TextureButton" parent="."]
+offset_left = 1057.0
+offset_top = 553.0
+offset_right = 1313.0
+offset_bottom = 809.0
+scale = Vector2(0.3, 0.3)
+toggle_mode = true
+texture_normal = ExtResource("5_y3mnx")
+texture_pressed = ExtResource("6_hx3j2")
+script = ExtResource("6_26i4r")
+
+[connection signal="button_up" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Play Now" to="." method="_on_play_now_button_up"]
+[connection signal="button_down" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/Exit Game" to="." method="_on_exit_game_button_down"]
+[connection signal="pressed" from="Sound Mute" to="Sound Mute" method="_on_pressed"]
