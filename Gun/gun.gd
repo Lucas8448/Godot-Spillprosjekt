@@ -13,9 +13,7 @@ func _ready():
 	animation_player = $AnimationPlayer
 
 func _input(event):
-	print("input")
 	if event.is_action_pressed("shoot"):
-		print("SHOOT")
 		shoot()
 	elif event.is_action_pressed("reload"):
 		reload()
@@ -24,7 +22,7 @@ func _input(event):
 func shoot():
 	if not is_reloading and current_ammo > 0:
 		# Play shooting animation
-		animation_player.play("CarryPistol_Rig | FireCycle")
+		animation_player.play("Gun/Shoot")
 		# Decrease ammo count
 		current_ammo -= 1
 		print("Bang! Ammo left: ", current_ammo)
@@ -36,13 +34,8 @@ func reload():
 	if not is_reloading:
 		is_reloading = true
 		# Play reloading animation
-		animation_player.play("Reload")
+		animation_player.play("Gun/Reload")
 		# Reset ammo count when the animation ends
-		animation_player.connect("animation_finished", self, "_on_reload_animation_finished")
-
-# Callback for when the reload animation finishes
-func _on_reload_animation_finished(animation_name):
-	if animation_name == "Reload":
 		current_ammo = ammo_capacity
 		is_reloading = false
 		print("Reloaded. Ammo: ", current_ammo)
