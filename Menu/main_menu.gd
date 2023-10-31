@@ -1,6 +1,7 @@
 extends Node2D
 
 var game = "res://Main.tscn"
+var controls = "res://Menu/Controls.tscn"
 
 func _on_play_now_button_up():
 	get_tree().change_scene_to_file(game)
@@ -13,3 +14,7 @@ func _on_fullscreen_toggled(button_pressed):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func _on_controls_pressed():
+	get_tree().change_scene_to_file(controls)

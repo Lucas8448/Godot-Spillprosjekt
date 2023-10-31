@@ -62,9 +62,7 @@ custom_minimum_size = Vector2(2.08165e-12, 250)
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_dtqbd")
 theme_override_font_sizes/font_size = 120
-text = "Undead Uprising:
-The Fall of Humanity
-"
+text = "Afterlife"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -147,5 +145,6 @@ autoplay = true
 mix_target = 1
 
 [connection signal="button_up" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Play Now" to="." method="_on_play_now_button_up"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/Controls" to="." method="_on_controls_pressed"]
 [connection signal="button_down" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/Exit Game" to="." method="_on_exit_game_button_down"]
 [connection signal="pressed" from="Sound Mute" to="Sound Mute" method="_on_pressed"]
