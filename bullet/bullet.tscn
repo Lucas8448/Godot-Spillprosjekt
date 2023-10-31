@@ -1,5 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://drmcik7b13vdl"]
+[gd_scene load_steps=3 format=3 uid="uid://drmcik7b13vdl"]
 
 [ext_resource type="PackedScene" uid="uid://c5j6oa3xo0q1i" path="res://bullet/scene.gltf" id="1_5svoo"]
+[ext_resource type="Script" path="res://bullet/bullet.gd" id="2_s3551"]
 
 [node name="bullet" instance=ExtResource("1_5svoo")]
+script = ExtResource("2_s3551")
+
+[node name="bullet" parent="Sketchfab_model/bullet_fbx/RootNode" index="0"]
+transform = Transform3D(-100, -8.74228e-06, -4.37114e-06, 4.37114e-06, 1.91069e-13, -100, 8.74228e-06, -100, 1.91069e-13, 0, 0, 0)

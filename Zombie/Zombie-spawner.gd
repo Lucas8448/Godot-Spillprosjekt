@@ -1,5 +1,6 @@
 extends Node3D
 
+
 var zombie = preload("res://Zombie/Zombie.tscn")
 
 # Called when the node enters the scene tree for the first time.

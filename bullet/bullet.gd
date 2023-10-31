@@ -1,8 +1,9 @@
 var speed = 800
-camera = 
+var camera_node = null
 
 func _ready():
-  look_at()
+	camera_node = get_tree().get_root().get_node("Main/Player/Camera3D")
+	var rotation = camera_node.get_camera_projection()
 
-#func _physics_process(delta):
-#  linear_velocity = Vector2.RIGHT.rotated(rotation) * speed
+func _physics_process(delta):
+  linear_velocity = Vector3.RIGHT.rotated(rotation) * speed

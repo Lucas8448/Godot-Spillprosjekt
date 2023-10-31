@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpob06i01uh6l"]
+[gd_scene load_steps=14 format=3 uid="uid://dpob06i01uh6l"]
 
 [ext_resource type="Texture2D" uid="uid://cdr8jl23iloi8" path="res://Menu/Zombie.jpg" id="1_7ki4k"]
 [ext_resource type="Script" path="res://Menu/main_menu.gd" id="1_qg7ng"]
 [ext_resource type="FontFile" uid="uid://ci2xmejnts6ue" path="res://Menu/Storm Gust.ttf" id="1_wrf36"]
 [ext_resource type="FontFile" uid="uid://cd1vgqtadfwpa" path="res://Menu/who asks satan.ttf" id="2_cu4c8"]
 [ext_resource type="Texture2D" uid="uid://cb5csrik1psad" path="res://Menu/audio.png" id="5_y3mnx"]
-[ext_resource type="Script" path="res://TextureButton.gd" id="6_26i4r"]
+[ext_resource type="Script" path="res://Menu/TextureButton.gd" id="6_26i4r"]
 [ext_resource type="Texture2D" uid="uid://l7e7svi4l4si" path="res://Menu/Mute.png" id="6_hx3j2"]
+[ext_resource type="AudioStream" uid="uid://bjbaa2on31twe" path="res://Menu/bakgrundsmusikk.mp3" id="8_umwi0"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_cxik4"]
 
@@ -107,7 +108,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ohnv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_02vlx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5ikfn")
-text = "Contols"
+text = "Controls"
 
 [node name="MarginContainer3" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 75)
@@ -138,6 +139,12 @@ toggle_mode = true
 texture_normal = ExtResource("5_y3mnx")
 texture_pressed = ExtResource("6_hx3j2")
 script = ExtResource("6_26i4r")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_umwi0")
+volume_db = 2.144
+autoplay = true
+mix_target = 1
 
 [connection signal="button_up" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Play Now" to="." method="_on_play_now_button_up"]
 [connection signal="button_down" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/Exit Game" to="." method="_on_exit_game_button_down"]

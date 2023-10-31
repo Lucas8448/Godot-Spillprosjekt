@@ -25,9 +25,8 @@ func shoot():
 		animation_player.play("Gun/Shoot")
 		# Decrease ammo count
 		current_ammo -= 1
-		print("Bang! Ammo left: ", current_ammo)
 	else:
-		print("Cannot shoot. Either reloading or out of ammo.")
+		pass
 
 # Function to handle reloading
 func reload():
@@ -38,4 +37,3 @@ func reload():
 		# Reset ammo count when the animation ends
 		current_ammo = ammo_capacity
 		is_reloading = false
-		print("Reloaded. Ammo: ", current_ammo)
