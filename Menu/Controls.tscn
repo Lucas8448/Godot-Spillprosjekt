@@ -25,6 +25,8 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="Controls" type="Node2D"]
+position = Vector2(92, 119)
+scale = Vector2(2, 2)
 script = ExtResource("1_phjuq")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -33,6 +35,7 @@ offset_top = -68.0
 offset_right = 1252.0
 offset_bottom = 744.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 3.0
@@ -48,6 +51,7 @@ text = "
 	Shoot: Right Mouse Button
 	Reload: R
 	"
+metadata/_edit_use_anchors_ = true
 
 [node name="Back" type="Button" parent="."]
 clip_contents = true
@@ -70,5 +74,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kbjoo")
 theme_override_styles/hover = SubResource("StyleBoxFlat_pr4ks")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_gcdvo")
 text = "Back"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

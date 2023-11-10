@@ -7,12 +7,12 @@
 script = ExtResource("1_el34p")
 
 [node name="Intro" type="Sprite2D" parent="."]
-position = Vector2(566, 334)
-scale = Vector2(0.65, 0.65)
+position = Vector2(1294, 739)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_rs83w")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.1
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,9 +1,20 @@
-var speed = 800
-var camera_node = null
+extends Node3D
+class_name MyBullet
 
-func _ready():
-	camera_node = get_tree().get_root().get_node("Main/Player/Camera3D")
-	var rotation = camera_node.get_camera_projection()
+var speed = -800.0
+var lifetime = 5.0  # seconds
+var direction = Vector3.ZERO
+var damage = 10  # Set the damage value for the bullet
 
-func _physics_process(delta):
-  linear_velocity = Vector3.RIGHT.rotated(rotation) * speed
+func start(_direction: Vector3):
+	print("Bullet moving", _direction)
+	direction = _direction.normalized()
+
+func _process(delta):
+	translate(direction * speed * delta)
+
+func _on_Bullet_body_entered(body: Node):
+	queue_free()
+
+func _on_timer_timeout():
+	queue_free()
