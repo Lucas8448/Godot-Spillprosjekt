@@ -1,0 +1,11 @@
+Model Information:
+* title:	bullet
+* source:	https://sketchfab.com/3d-models/bullet-5d22e94bc6284597b0f3b3442070a2a3
+* author:	svein_rop_z (https://sketchfab.com/svein_rop_z)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "bullet" (https://sketchfab.com/3d-models/bullet-5d22e94bc6284597b0f3b3442070a2a3) by svein_rop_z (https://sketchfab.com/svein_rop_z) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

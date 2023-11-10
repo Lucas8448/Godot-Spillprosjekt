@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpob06i01uh6l"]
+[gd_scene load_steps=14 format=3 uid="uid://dpob06i01uh6l"]
 
-[ext_resource type="Texture2D" uid="uid://cdr8jl23iloi8" path="res://Menu/Zombie.jpg" id="1_7ki4k"]
 [ext_resource type="Script" path="res://Menu/main_menu.gd" id="1_qg7ng"]
 [ext_resource type="FontFile" uid="uid://ci2xmejnts6ue" path="res://Menu/Storm Gust.ttf" id="1_wrf36"]
 [ext_resource type="FontFile" uid="uid://cd1vgqtadfwpa" path="res://Menu/who asks satan.ttf" id="2_cu4c8"]
+[ext_resource type="Texture2D" uid="uid://bqlbi0onnfhnh" path="res://Menu/background.png" id="2_tgije"]
 [ext_resource type="Texture2D" uid="uid://cb5csrik1psad" path="res://Menu/audio.png" id="5_y3mnx"]
-[ext_resource type="Script" path="res://TextureButton.gd" id="6_26i4r"]
+[ext_resource type="Script" path="res://Menu/TextureButton.gd" id="6_26i4r"]
 [ext_resource type="Texture2D" uid="uid://l7e7svi4l4si" path="res://Menu/Mute.png" id="6_hx3j2"]
+[ext_resource type="AudioStream" uid="uid://bjbaa2on31twe" path="res://Menu/bakgrundsmusikk.mp3" id="8_umwi0"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_cxik4"]
 
@@ -35,16 +36,20 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="MainMenu" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(2, 2)
 script = ExtResource("1_qg7ng")
 
 [node name="Zombie" type="Sprite2D" parent="."]
-position = Vector2(576, 236)
-scale = Vector2(1.125, 1)
-texture = ExtResource("1_7ki4k")
+position = Vector2(661, 335.5)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_tgije")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1152.0
-offset_bottom = 642.0
+offset_left = 65.0
+offset_top = 12.5
+offset_right = 1217.0
+offset_bottom = 654.5
 texture = SubResource("ImageTexture_cxik4")
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
@@ -61,9 +66,7 @@ custom_minimum_size = Vector2(2.08165e-12, 250)
 layout_mode = 2
 theme_override_fonts/font = SubResource("FontVariation_dtqbd")
 theme_override_font_sizes/font_size = 120
-text = "Undead Uprising:
-The Fall of Humanity
-"
+text = "Afterlife"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -107,7 +110,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_6ohnv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_02vlx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5ikfn")
-text = "Contols"
+text = "Controls"
 
 [node name="MarginContainer3" type="MarginContainer" parent="TextureRect/MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 75)
@@ -129,16 +132,24 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_5ikfn")
 text = "Exit game"
 
 [node name="Sound Mute" type="TextureButton" parent="."]
-offset_left = 1057.0
-offset_top = 553.0
-offset_right = 1313.0
-offset_bottom = 809.0
+offset_left = 1183.0
+offset_top = 636.0
+offset_right = 1439.0
+offset_bottom = 892.0
 scale = Vector2(0.3, 0.3)
 toggle_mode = true
 texture_normal = ExtResource("5_y3mnx")
 texture_pressed = ExtResource("6_hx3j2")
+stretch_mode = 0
 script = ExtResource("6_26i4r")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_umwi0")
+volume_db = 2.144
+autoplay = true
+mix_target = 1
+
 [connection signal="button_up" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Play Now" to="." method="_on_play_now_button_up"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer2/Controls" to="." method="_on_controls_pressed"]
 [connection signal="button_down" from="TextureRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer3/Exit Game" to="." method="_on_exit_game_button_down"]
 [connection signal="pressed" from="Sound Mute" to="Sound Mute" method="_on_pressed"]
