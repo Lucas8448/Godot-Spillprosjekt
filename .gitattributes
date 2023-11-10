@@ -30,4 +30,9 @@
 *.webm filter=lfs diff=lfs merge=lfs -text
 # Other large binary files
 *.bin filter=lfs diff=lfs merge=lfs -text
+# Others
+*.pack filter=lfs diff=lfs merge=lfs -text
+*.release filter=lfs diff=lfs merge=lfs -text
+*.debug filter=lfs diff=lfs merge=lfs -text
+*.ctex filter=lfs diff=lfs merge=lfs -text
 Main.tscn filter=lfs diff=lfs merge=lfs -text
