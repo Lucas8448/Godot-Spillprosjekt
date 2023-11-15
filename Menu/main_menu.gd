@@ -1,10 +1,10 @@
 extends Node2D
 
-var loader1 = "res://Loading/Loading1.tscn"
+var loader = "res://Loading/Loading.tscn"
 var controls = "res://Menu/Controls.tscn"
 
 func _on_play_now_button_up():
-	get_tree().change_scene_to_file(loader1)
+	get_tree().change_scene_to_file(loader)
 
 func _on_exit_game_button_down():
 	get_tree().quit()
