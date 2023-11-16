@@ -1,18 +1,3 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8b2rvno3wip4"]
-
-[ext_resource type="Script" path="res://Start/Intro.gd" id="1_el34p"]
-[ext_resource type="Texture2D" uid="uid://3hreuaaso5xl" path="res://Start/intro.png" id="2_rs83w"]
-
-[node name="Intro" type="Node2D"]
-script = ExtResource("1_el34p")
-
-[node name="Intro" type="Sprite2D" parent="."]
-position = Vector2(1294, 739)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_rs83w")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+version https://git-lfs.github.com/spec/v1
+oid sha256:37542874753e6d9792a26e71de0732120ad91364663efad566cdea8ea0034693
+size 589
