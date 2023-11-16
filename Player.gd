@@ -54,6 +54,16 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
+	var zombies_node = get_node("../Static/Zombies")
+	if zombies_node != null:
+		var zombie_count = zombies_node.get_child_count()
+		print("Number of zombies: ", zombie_count)
+		if zombie_count <= 0:
+			get_tree().change_scene_to_file("res://Win/Win.tscn")
+	else:
+		print("Zombies node not found")
+
 
 	move_and_slide()
 
