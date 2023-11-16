@@ -80,9 +80,8 @@ class AnimationHandler:
 
 	func _animation_finished(anim_name):
 		if anim_name == "Zombie-library/attack1":
-			owner.is_attacking = false
-			owner.player_body.recieve_damage(10)
-		determine_next_animation()
+			owner.player_body.receive_damage(10)
+			determine_next_animation()
 
 	func determine_next_animation():
 		if owner.health <= 0 and not animation_player.is_playing():
