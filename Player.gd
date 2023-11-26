@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var speed
 const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
+const SPRINT_SPEED = 40.0
 const JUMP_VELOCITY = 4.8
 const SENSITIVITY = 0.004
 
@@ -15,6 +15,20 @@ const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
 var camera_rotation = Vector2()
 
+#mission areas
+var crater_center: Vector3 = Vector3(-180, -17, -206)
+var crater_radius: float = 50.0
+
+var radio_center: Vector3 = Vector3(96, 2,-234)
+var radio_radius: float = 2.0
+
+var tower_center: Vector3 = Vector3(99, 3, 306)
+var tower_radius: float = 4.0
+
+var hasVisitedArea: bool = false
+var isWithinRadioMastRadius: bool = false
+var hasVisitedTowers: bool = false
+
 var gravity = 9.8
 
 @onready var camera = $Camera3D
@@ -22,6 +36,7 @@ var gravity = 9.8
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	update_objective_text("Explore the bottom of the crash site")
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -33,6 +48,7 @@ func _unhandled_input(event):
 		camera.rotate_object_local(Vector3.RIGHT, -camera_rotation.y)
 
 func _physics_process(delta):
+	var player_position = global_transform.origin
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -54,17 +70,19 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
-	
-	var zombies_node = get_node("../Static/Zombies")
-	if zombies_node != null:
-		var zombie_count = zombies_node.get_child_count()
-		print("Number of zombies: ", zombie_count)
-		if zombie_count <= 0:
-			get_tree().change_scene_to_file("res://Win/Win.tscn")
-	else:
-		print("Zombies node not found")
+	if player_position.distance_to(crater_center) <= crater_radius:
+		update_objective_text("Seems like an astroid with zombies has hit the earth. Head to the radio mast to call for help")
+		hasVisitedArea = true
 
+	if player_position.distance_to(radio_center) <= radio_radius:
+		if hasVisitedArea:
+			update_objective_text("Great, a helicopter is on the way, but they can't land here. Lets head to the towers to get a ride out of here.")
+			isWithinRadioMastRadius = true
 
+	if player_position.distance_to(tower_center) <= tower_radius:
+		if hasVisitedArea and isWithinRadioMastRadius:
+			hasVisitedTowers = true
+	check_mission_completion()
 	move_and_slide()
 
 func receive_damage(amount: int):
@@ -76,3 +94,10 @@ func receive_damage(amount: int):
 
 func die():
 	get_tree().change_scene_to_file("res://Dead/Death.tscn")
+
+func check_mission_completion():
+	if hasVisitedArea and isWithinRadioMastRadius and hasVisitedTowers:
+		get_tree().change_scene_to_file("res://Win/Win.tscn")
+
+func update_objective_text(new_text: String):
+	$Camera3D/Control/Mission.text = new_text
